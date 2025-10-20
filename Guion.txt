@@ -1,0 +1,56 @@
+Guion de Video: "La Metamorfosis de Scrooge: Un Análisis Actancial"
+Título del Video: La Metamorfosis de Scrooge: Un Análisis Actancial Duración Estimada: 6:30 - 7:00 minutos Formato: MP4, 1080p. Participantes:
+Karolina: Introducción y Análisis (Estado Inicial).
+Diana: Explicación del Modelo de Greimas.
+Luis: Análisis (Transformación y Estado Final) y Conclusión.
+
+[00:00 - 01:30] SECUENCIA 1: INTRODUCCIÓN Y PLANTEAMIENTO
+(Cámara abierta: Karolina, centrada. Fondo de biblioteca virtual. Música clásica suave de fondo).
+[Recurso Audiovisual: 00:00 - 00:15] Pantalla completa. Animación de texto (Motion Graphics) con el título "La Metamorfosis de Scrooge: Un Análisis Actancial". Aparecen los nombres: Karolina, Diana y Luis. La música sube y luego baja a fondo.
+Karolina: (Sonríe a la cámara) ¡Hola a todos! Somos estudiantes de segundo semestre del programa de Literatura y hoy realizaremos un análisis de la transformación de un personaje clásico de la literatura: Ebenezer Scrooge, de la novela "Un Cuento de Navidad" del autor Charles Dickens.
+(Cámara abierta: Karolina. A su lado [Recurso Audiovisual], aparece la portada de la novela).
+Karolina: Como muchos sabemos, Scrooge era un hombre avaro y amargado, cuyo cambio vamos a analizar no sólo desde la psicología sino desde la estructura de la narración planteado en el Modelo Actancial de Julien Greimas.
+(Cámara abierta: Diana. A su lado [Recurso Audiovisual], aparece un gráfico simple con la palabra "GREIMAS").
+Diana: Greimas, como podemos evidenciar en el texto de SciELO, no busca ver a los personajes como meras personas, sino como “actantes”, que vienen a ser funciones que cumplen un rol dentro de la historia. Es así como este modelo explica que toda narrativa es una transformación, es decir, un Sujeto que busca un Objeto.
+
+[01:30 - 03:30] SECUENCIA 2: EXPLICACIÓN DEL MODELO ACTANCIAL
+(Cámara abierta: Diana. Fondo neutro. Voz clara y pedagógica).
+Diana: Es así como este modelo viene a ser un “mapa” de la historia, en la que no importa mucho quién es el héroe de dicha historia, sino qué hace ese héroe dentro de la misma. De esta forma, el modelo tiene seis actantes que se agrupan en un total de tres ejes.
+(Recurso Audiovisual: Transición a pantalla completa. Infografía animada que se construye mientras Diana habla).
+Diana: (Voz en off) El primero de ellos es el  Eje del Deseo, donde se tiene al Sujeto (ya sea un héroe o un protagonista) y al Objeto (aquello que el sujeto busca en la historia). Este objeto puede ser amor, poder, un tesoro, o como en este caso, la redención.
+(La infografía muestra [SUJETO] -> [OBJETO]).
+Diana: (Voz en off) El segundo de estos es el Eje de la Comunicación, donde se encuentran el Destinador (es esa fuerza que le da la misión al Sujeto, que puede ser un rey, un ideal, un Dios incluso), y el Destinatario, (aquél que recibe el Objeto al final, que por ejemplo puede ser la sociedad o el mismo Sujeto como en esta historia).
+(La infografía añade [DESTINADOR] -> [OBJETO] -> [DESTINATARIO]).
+Diana: (Voz en off) El último de estos es el Eje del Poder, donde se encuentran los Ayudantes (que son todos los que ayudan al Sujeto), y los Oponentes (que son los que se lo impiden).
+(La infografía añade [AYUDANTE] -> [SUJETO] <- [OPONENTE]).
+(Cámara abierta: Diana).
+Diana: La importancia de estos “actantes” viene a ser que no son necesariamente personas, por lo que un ayudante puede ser una espada mágica y un oponente puede ser el mero miedo del Sujeto. Ahora, Karolina, volvamos a Scrooge, porque queremos ver como se ve él en ese mapa antes de la transformación por la que atraviesa.
+
+[03:30 - 05:00] SECUENCIA 3: ANÁLISIS DEL ESTADO INICIAL (SCROOGE 1.0)
+(Cámara abierta: Karolina).
+Karolina: ¡Excelente pregunta! Es aquí donde el modelo se pone interesante. Antes de la visita de los fantasmas, Scrooge ya está en un programa narrativo que es corrupto.
+(Recurso Audiovisual: Pantalla dividida. Karolina a la izquierda, y a la derecha un esquema "Actancial de Scrooge 1.0").
+Karolina: En este caso, el Sujeto es él mismo (Ebenezer Scrooge)y el Objeto, no es la felicidad sino el Dinero y la acumulación de este.
+(El esquema se rellena: SUJETO: Scrooge / OBJETO: Dinero).
+Karolina: Así mismo, podemos observar que el Destinador, lo que le da esa misión es la “Avaricia” o más bien, una distorsionada visión del capitalismo, que se sirven de los Ayudantes: Los libros de contabilidad, sus cerrojos, la oscuridad presente, y los Oponentes, son todo lo demás como su sobrino Fred, la caridad, uno de los elementos más representativos de la obra: La Navidad, y en general todo lo que amenace ese objeto-dinero.
+(El esquema se rellena: OPONENTES: La Navidad, Fred, la caridad).
+Karolina: De esta forma, en el primer modelo, Scrooge es un Sujeto exitoso porque tiene su Objeto (el dinero), pero la narrativa que plasma Dickens nos instruye en que este es un estado de carencia espiritual, que, para transformarse, el personaje principal debe cambiar de modelo actancial. Pero yo quisiera preguntarle a Luis cómo es que eso ocurre.
+
+[05:00 - 07:00] SECUENCIA 4: ANÁLISIS DE LA TRANSFORMACIÓN (SCROOGE 2.0) Y CONCLUSIÓN
+(Cámara abierta: Luis. Fondo dinámico, quizás con un reloj).
+Luis: Claro, esta transformación del personaje es una "substitución" de su programa narrativo, donde los fantasmas no son sólo personajes sino Ayudantes de un nuevo Destinador.
+(Recurso Audiovisual: Aparece un clip corto de una película de "Un Cuento de Navidad" (dominio público o uso justo) mostrando al fantasma de Marley. El clip va sin audio, con la voz de Luis encima).
+Luis: (Voz en off) Es así como el fantasma de Marley, antiguo socio de Scrooge, actúa como el Destinador principal, debido a que es él quien inicia la "prueba" que cambiará a Scrooge y es clara su misión: Debe evitar el destino de Marley.
+(Cámara abierta: Luis. A su lado, un nuevo esquema "Actancial de Scrooge 2.0").
+Luis: El viaje que realiza el personaje con los tres espíritus (Pasado, Presente, Futuro) son los eventos narrativos que llevan a esa transformación y es por lo cual el Objeto cambia.
+(El esquema se rellena: SUJETO: Scrooge / OBJETO: Redención / Humanidad).
+Luis: Es así como el nuevo Objeto de Scrooge ya no es el Dinero sino la Redención, la "Caridad" o la "Conexión Humana", por eso sus Ayudantes ahora son los Espíritus, y de forma simbólica, Tiny Tim. Ahora bien, el Oponente tiene su propio pasado, su avaricia, el "viejo Scrooge”, lo que nos presenta una lucha del personaje consigo mismo.
+(El esquema se rellena: OPONENTE: Su propio pasado / Avaricia).
+Luis: Al final de la novela, Scrooge se convierte en un nuevo Sujeto, el Destinatario de su nuevo Objeto (la redención) es él mismo, pero también es la familia Cratchit y toda la sociedad.
+(Cámara abierta: Karolina, Diana y Luis en pantalla dividida).
+Karolina: Entonces, para concluir, el modelo actancial de Greimas nos permite describir la transformación de Scrooge de una forma estructurada y clara…
+Diana: No es solo un cambio de humor sino un cambio completo de misión, donde su rol de "Oponente" de la Navidad...
+Luis: ...se transforma en el "Sujeto" y "Ayudante" de él mismo.
+(Recurso Audiovisual: Pantalla completa. Gráfico final comparando los dos modelos (Scrooge 1.0 vs Scrooge 2.0) uno al lado del otro. Música sube).
+Karolina: (Voz en off) Así, l modelo de Greimas nos muestra que la transformación de un personaje es, realmente, la transformación de su deseo y su propósito en la estructura de la historia.
+(Créditos finales con música).
