@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Metamorfosis de Scrooge: Un Análisis Actancial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #111;
+            color: #fff;
+            overflow: hidden;
+        }
+        .font-serif-display { font-family: 'EB Garamond', serif; }
+
+        /* Estilos generales de diapositiva */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 2rem;
+            padding-bottom: 120px; /* Espacio para los controles de navegación */
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .victorian-paper {
+             background-color: #2a2a2a;
+             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23383838' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .dark-blue-paper {
+             background-color: #0a192f;
+             background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%231e293b' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Animación de nieve */
+        .snow { position: absolute; top: -100px; left: 0; right: 0; bottom: 0; pointer-events: none; }
+        .flake { position: absolute; background: white; border-radius: 50%; opacity: 0.6; }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Animación de escritura */
+        .typewriter h1 {
+            overflow: hidden;
+            border-right: .15em solid #daa520;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #daa520; } }
+
+        /* Controles de navegación */
+        .nav-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .nav-controls button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-controls button:hover { background-color: rgba(255, 255, 255, 0.4); }
+        .slide-counter {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            z-index: 1000;
+        }
+        
+        /* Estilos específicos de diapositivas */
+        .golden-text { color: #daa520; text-shadow: 0 0 15px rgba(218, 165, 32, 0.5); }
+        .soft-glow { animation: soft-glow-anim 2.5s ease-in-out infinite alternate; }
+        @keyframes soft-glow-anim {
+            from { text-shadow: 0 0 10px rgba(218, 165, 32, 0.4); }
+            to { text-shadow: 0 0 25px rgba(218, 165, 32, 0.8); }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .library-bg {
+            background-image: url('https://png.pngtree.com/background/20230522/original/pngtree-room-filled-with-books-on-a-ladder-picture-image_2693148.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .library-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(43, 29, 14, 0.7);
+            filter: blur(5px);
+        }
+        .library-content { position: relative; z-index: 1; }
+        
+        .lower-third {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-left: 4px solid #daa520;
+        }
+
+        .pop-in { animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .draw-line {
+            width: 0;
+            height: 1px;
+            background-color: #daa520;
+            margin: 1rem auto;
+            animation: draw 0.6s ease-out forwards;
+        }
+        @keyframes draw { to { width: 50%; } }
+
+        /* Recuadro de cámara para presentadores */
+        .camera-box {
+            border: 3px dashed rgba(218, 165, 32, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+        .camera-box::before {
+            content: '📹 CÁMARA';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(218, 165, 32, 0.8);
+            color: #111;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        .camera-placeholder {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* Modelo Actancial */
+        .actancial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 4rem 2rem;
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+        }
+        .actancial-node {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .node-title { font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+
+        /* Flechas SVG para el modelo */
+        .arrow-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .arrow-path {
+            stroke: #daa520;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-arrow 0.7s ease-out forwards;
+        }
+        @keyframes draw-arrow { to { stroke-dashoffset: 0; } }
+        
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+
+        <!-- Diapositiva 1: Título animado (00:00–00:15) -->
+        <div class="slide active victorian-paper" id="slide-1" data-sfx="page-flip">
+            <div class="snow"></div>
+            <div class="w-full max-w-4xl typewriter">
+                <h1 class="text-4xl md:text-6xl font-serif-display golden-text soft-glow">La Metamorfosis de Scrooge</h1>
+            </div>
+             <h2 class="text-2xl md:text-3xl font-serif-display golden-text soft-glow mt-2">Un Análisis Actancial</h2>
+            <p class="text-xl md:text-2xl mt-8 tracking-[0.2em] opacity-80 fade-in-up" style="animation-delay: 3.6s;">Karolina Caicedo · Diana Chuello· Luis Gomez</p>
+        </div>
+
+        <!-- Diapositiva 2: Fondo para cámara Karolina (00:15–01:30) -->
+        <div class="slide library-bg" id="slide-2">
+            <div class="library-content w-full flex justify-between items-center p-8" style="max-height: calc(100vh - 160px);">
+                 <div class="w-1/2 p-4">
+                     <!-- Espacio para cámara del presentador -->
+                     <div class="camera-box h-full">
+                         <div class="camera-placeholder">
+                             Espacio para cámara de Karolina<br>
+                             <small>(00:15–01:30)</small>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="w-1/2 p-4 text-left">
+                     <h3 class="text-3xl font-serif-display golden-text mb-4">Introducción</h3>
+                     <p class="text-lg text-gray-300 leading-relaxed">
+                         "Hoy realizaremos un análisis de la transformación de un personaje clásico: <strong>Ebenezer Scrooge</strong>, de <em>Un Cuento de Navidad</em> de Charles Dickens."
+                     </p>
+                 </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 3: Portada del libro (Karolina continúa) -->
+        <div class="slide library-bg" id="slide-3" data-sfx="ding">
+             <div class="library-content w-full flex justify-between items-center p-8" style="max-height: calc(100vh - 160px);">
+                 <div class="w-1/2 p-4">
+                     <!-- Espacio para cámara del presentador -->
+                     <div class="camera-box h-full">
+                         <div class="camera-placeholder">
+                             Espacio para cámara de Karolina<br>
+                             <small>(Continúa hablando sobre Scrooge)</small>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="w-1/2 flex flex-col items-center justify-center p-4">
+                    <div class="pop-in">
+                        <img src="https://images.cdn2.buscalibre.com/fit-in/360x360/b1/ab/b1ab497aee35e343e96f78880342a082.jpg" alt="Portada de A Christmas Carol" class="rounded-lg shadow-2xl" style="filter: sepia(0.3) contrast(1.1);">
+                        <p class="mt-4 text-center text-gray-300 font-serif-display text-xl">Charles Dickens — 1843</p>
+                    </div>
+                    <p class="mt-6 text-center text-gray-300 italic max-w-md">
+                        "Scrooge era un hombre avaro y amargado..."
+                    </p>
+                 </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 4: Diana introduce GREIMAS (01:30–03:30) -->
+        <div class="slide dark-blue-paper" id="slide-4" data-sfx="pen-stroke">
+            <div class="w-full flex items-center justify-between p-8" style="max-height: calc(100vh - 160px);">
+                <div class="w-1/2 p-4">
+                    <!-- Espacio para cámara de Diana -->
+                    <div class="camera-box h-full">
+                        <div class="camera-placeholder">
+                            Espacio para cámara de Diana<br>
+                            <small>(01:30–03:30)<br>Explicación del Modelo Actancial</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 p-4 fade-in-up">
+                    <h2 class="text-7xl font-serif-display tracking-[0.3em] golden-text mb-4">GREIMAS</h2>
+                    <div class="draw-line"></div>
+                    <h3 class="text-3xl tracking-[0.1em] text-gray-300 mt-4">Modelo actancial</h3>
+                    <p class="mt-8 text-lg text-gray-400 leading-relaxed">
+                        "Los personajes no son meras personas, sino <strong class="text-white">actantes</strong>: funciones que cumplen un rol dentro de la historia."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 5: Infografía base del Modelo Actancial (Diana voz en off) -->
+        <div class="slide dark-blue-paper" id="slide-5">
+            <h3 class="text-2xl golden-text mb-8 absolute top-12">Los Seis Actantes del Modelo</h3>
+            <div class="actancial-grid">
+                <div class="actancial-node fade-in-up" style="animation-delay: 0.2s; grid-column: 1; grid-row: 1;"><span class="node-title">Destinador</span><p class="text-xs mt-2 text-gray-400">Fuerza que da la misión</p></div>
+                <div class="actancial-node fade-in-up" style="animation-delay: 0.4s; grid-column: 2; grid-row: 1;"><span class="node-title">Objeto</span><p class="text-xs mt-2 text-gray-400">Lo que se busca</p></div>
+                <div class="actancial-node fade-in-up" style="animation-delay: 0.6s; grid-column: 3; grid-row: 1;"><span class="node-title">Destinatario</span><p class="text-xs mt-2 text-gray-400">Quien recibe el objeto</p></div>
+                <div class="actancial-node fade-in-up" style="animation-delay: 0.8s; grid-column: 1; grid-row: 2;"><span class="node-title">Ayudantes</span><p class="text-xs mt-2 text-gray-400">Fuerzas que ayudan</p></div>
+                <div class="actancial-node fade-in-up" style="animation-delay: 1.0s; grid-column: 2; grid-row: 2;"><span class="node-title">Sujeto</span><p class="text-xs mt-2 text-gray-400">El protagonista</p></div>
+                <div class="actancial-node fade-in-up" style="animation-delay: 1.2s; grid-column: 3; grid-row: 2;"><span class="node-title">Oponentes</span><p class="text-xs mt-2 text-gray-400">Fuerzas que impiden</p></div>
+            </div>
+        </div>
+        
+        <!-- Diapositiva 6: Eje del Deseo (Diana voz en off) -->
+        <div class="slide dark-blue-paper" id="slide-6" data-sfx="whoosh">
+            <h3 class="text-2xl golden-text mb-8 absolute top-12">Eje del Deseo</h3>
+            <div class="actancial-grid">
+                <div class="actancial-node opacity-30"><span class="node-title">Destinador</span></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Objeto</span><p class="text-sm mt-2">Aquello que el sujeto busca</p></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Destinatario</span></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Ayudantes</span></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Sujeto</span><p class="text-sm mt-2">Héroe o protagonista</p></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Oponentes</span></div>
+                <svg class="arrow-svg" viewBox="0 0 900 400"><path class="arrow-path" d="M450 325 L 450 125" marker-end="url(#arrowhead)"></path></svg>
+                <p class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-[#0a192f] px-4 py-2 text-yellow-400 font-bold">EJE DEL DESEO</p>
+            </div>
+            <p class="absolute bottom-24 left-1/2 -translate-x-1/2 text-gray-300 max-w-2xl text-center">
+                "El Sujeto busca el Objeto: puede ser amor, poder, un tesoro, o la redención"
+            </p>
+        </div>
+        
+        <!-- Diapositiva 7: Eje de la Comunicación (Diana voz en off) -->
+        <div class="slide dark-blue-paper" id="slide-7" data-sfx="tick-tick">
+            <h3 class="text-2xl golden-text mb-8 absolute top-12">Eje de la Comunicación</h3>
+            <div class="actancial-grid">
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Destinador</span><p class="text-sm mt-2">Fuerza que da la misión</p></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Objeto</span><p class="text-sm mt-2">Lo transmitido</p></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Destinatario</span><p class="text-sm mt-2">Quien recibe al final</p></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Ayudantes</span></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Sujeto</span></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Oponentes</span></div>
+                <svg class="arrow-svg" viewBox="0 0 900 400"><path class="arrow-path" d="M150 125 L 750 125" marker-end="url(#arrowhead)"></path></svg>
+                <p class="absolute top-[28%] left-1/2 -translate-x-1/2 bg-[#0a192f] px-4 py-2 text-yellow-400 font-bold">EJE DE LA COMUNICACIÓN</p>
+            </div>
+            <p class="absolute bottom-24 left-1/2 -translate-x-1/2 text-gray-300 max-w-2xl text-center">
+                "El Destinador impulsa al Sujeto hacia el Objeto, que beneficia al Destinatario"
+            </p>
+        </div>
+
+        <!-- Diapositiva 8: Eje del Poder (Diana voz en off) -->
+        <div class="slide dark-blue-paper" id="slide-8" data-sfx="whoosh-double">
+            <h3 class="text-2xl golden-text mb-8 absolute top-12">Eje del Poder</h3>
+            <div class="actancial-grid">
+                <div class="actancial-node opacity-30"><span class="node-title">Destinador</span></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Objeto</span></div>
+                <div class="actancial-node opacity-30"><span class="node-title">Destinatario</span></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Ayudantes [+]</span><p class="text-sm mt-2">Los que ayudan</p></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Sujeto</span></div>
+                <div class="actancial-node border-yellow-400 shadow-lg shadow-yellow-500/20"><span class="node-title">Oponentes [-]</span><p class="text-sm mt-2">Los que impiden</p></div>
+                <svg class="arrow-svg" viewBox="0 0 900 400">
+                    <path class="arrow-path" style="animation-delay: 0s" d="M150 325 L 400 325" marker-end="url(#arrowhead)"></path>
+                    <path class="arrow-path" style="animation-delay: 0.1s" d="M750 325 L 500 325" marker-end="url(#arrowhead)"></path>
+                </svg>
+                <p class="absolute bottom-[28%] left-1/2 -translate-x-1/2 bg-[#0a192f] px-4 py-2 text-yellow-400 font-bold">EJE DEL PODER</p>
+            </div>
+            <p class="absolute bottom-24 left-1/2 -translate-x-1/2 text-gray-300 max-w-2xl text-center">
+                "Los Ayudantes facilitan la búsqueda, los Oponentes la dificultan. <br>
+                <small class="text-gray-400">Pueden ser personas, objetos, o fuerzas abstractas</small>"
+            </p>
+        </div>
+
+        <!-- Diapositiva 9: Actancial de Scrooge 1.0 con Karolina (03:30–05:00) -->
+        <div class="slide dark-blue-paper" id="slide-9">
+             <div class="grid grid-cols-2 gap-8 w-full items-center p-8" style="max-height: calc(100vh - 160px);">
+                 <div class="text-left p-4">
+                    <!-- Espacio para cámara de Karolina -->
+                    <div class="camera-box mb-4" style="min-height: 250px;">
+                        <div class="camera-placeholder">
+                            Espacio para cámara de Karolina<br>
+                            <small>(03:30–05:00)</small>
+                        </div>
+                    </div>
+                    <h2 class="text-4xl font-serif-display golden-text mt-4">Scrooge 1.0</h2>
+                    <p class="mt-4 text-lg text-gray-300">"Antes de la visita de los fantasmas, Scrooge ya está en un <strong>programa narrativo corrupto</strong>."</p>
+                 </div>
+                 <div class="p-4 scale-90">
+                    <div class="actancial-grid text-sm">
+                        <div class="actancial-node"><span class="node-title">Destinador</span><p>Avaricia / Capitalismo</p></div>
+                        <div class="actancial-node"><span class="node-title">Objeto</span><p>💰 Dinero / Acumulación</p></div>
+                        <div class="actancial-node"><span class="node-title">Destinatario</span><p>Scrooge</p></div>
+                        <div class="actancial-node"><span class="node-title">Ayudantes</span><p>📖 Libros, 🔒 Cerrojos, 🌑 Oscuridad</p></div>
+                        <div class="actancial-node"><span class="node-title">Sujeto</span><p>Ebenezer Scrooge</p></div>
+                        <div class="actancial-node border-red-500/50"><span class="node-title">Oponentes</span><p>🎄 Navidad, 👨‍👩‍👧‍👦 Fred, ❤️ Caridad</p></div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+
+        <!-- Diapositiva 10: Transición a Transformación (04:15–04:30) -->
+        <div class="slide victorian-paper" id="slide-10" data-sfx="bell-toll">
+             <div class="text-6xl">🕰️</div>
+             <p class="mt-4 text-xl">Una visita cambiará el curso del tiempo...</p>
+        </div>
+        
+        <!-- Diapositiva 11: Luis presenta la transformación con Marley (05:00–05:40) -->
+        <div class="slide dark-blue-paper" id="slide-11">
+            <div class="w-full flex items-center justify-between p-8" style="max-height: calc(100vh - 160px);">
+                <div class="w-1/2 p-4">
+                    <!-- Espacio para cámara de Luis -->
+                    <div class="camera-box h-full">
+                        <div class="camera-placeholder">
+                            Espacio para cámara de Luis<br>
+                            <small>(05:00–07:00)<br>Análisis de la Transformación</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 p-4 flex flex-col items-center justify-center">
+                    <div class="border-4 border-gray-600 p-2 rounded-sm shadow-2xl bg-black relative pop-in mb-6">
+                        <img src="https://lapiedradesisifo.com/wp-content/uploads/2016/10/El-fantasma-de-Marley.jpg"
+                             alt="Fantasma de Marley"
+                             class="w-full h-auto rounded opacity-90"
+                             style="max-width: 400px; filter: sepia(0.2) brightness(0.9);">
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 px-4 py-1">
+                            <p class="text-xl golden-text font-serif-display">Marley — Destinador</p>
+                        </div>
+                    </div>
+                    <p class="text-lg text-gray-300 text-center max-w-md">
+                        "El fantasma de Marley actúa como el <strong class="text-white">Destinador principal</strong>, iniciando la prueba que cambiará a Scrooge."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 12: Actancial de Scrooge 2.0 (Luis continúa) -->
+        <div class="slide dark-blue-paper" id="slide-12" data-sfx="shimmer">
+             <div class="w-full flex flex-col items-center justify-center p-8" style="max-height: calc(100vh - 160px);">
+                <h2 class="text-4xl font-serif-display golden-text mb-6">Scrooge 2.0: Un Nuevo Programa Narrativo</h2>
+                <div class="actancial-grid text-sm fade-in-up" style="max-width: 800px;">
+                    <div class="actancial-node"><span class="node-title">Destinador</span><p>👻 Marley + Espíritus</p></div>
+                    <div class="actancial-node border-green-400 shadow-lg shadow-green-500/20"><span class="node-title">Objeto</span><p>❤️ Redención / Humanidad</p></div>
+                    <div class="actancial-node"><span class="node-title">Destinatario</span><p>Scrooge, Familia Cratchit y Sociedad</p></div>
+                    <div class="actancial-node"><span class="node-title">Ayudantes</span><p>🕊️ Espíritus (Pasado, Presente, Futuro), 🦯 Tiny Tim</p></div>
+                    <div class="actancial-node"><span class="node-title">Sujeto</span><p>Ebenezer Scrooge (renovado)</p></div>
+                    <div class="actancial-node border-yellow-500/50"><span class="node-title">Oponente</span><p>👤 Su propio pasado / Viejo Scrooge</p></div>
+                </div>
+                <p class="mt-8 text-lg text-gray-400 max-w-2xl text-center">
+                    "El nuevo Objeto no es el Dinero sino la <strong class="golden-text">Redención</strong> y la <strong class="golden-text">Conexión Humana</strong>."
+                </p>
+             </div>
+        </div>
+
+        <!-- Diapositiva 13: Resumen visual (05:40–06:20) -->
+        <div class="slide dark-blue-paper" id="slide-13" data-sfx="tick">
+            <div class="grid grid-cols-2 gap-4 w-full items-center p-8" style="max-height: calc(100vh - 160px);">
+                <div class="p-2 border-r-2 border-gray-700">
+                    <h3 class="text-2xl font-serif-display golden-text mb-4">ANTES: Scrooge 1.0</h3>
+                    <ul class="text-left space-y-2 list-disc list-inside text-gray-400">
+                        <li><strong class="text-white">Objeto:</strong> 💰 Dinero</li>
+                        <li><strong class="text-white">Ayudantes:</strong> 📖 Aislamiento</li>
+                        <li><strong class="text-white">Oponente:</strong> 🎄 Humanidad</li>
+                    </ul>
+                </div>
+                <div class="p-2">
+                    <h3 class="text-2xl font-serif-display golden-text mb-4">DESPUÉS: Scrooge 2.0</h3>
+                    <ul class="text-left space-y-2 list-disc list-inside">
+                        <li class="text-green-400">✔️ <strong class="text-white">Objeto:</strong> ❤️ Redención</li>
+                        <li class="text-green-400">✔️ <strong class="text-white">Ayudantes:</strong> 👻 Guías</li>
+                        <li class="text-green-400">✔️ <strong class="text-white">Oponente:</strong> 👤 Su propio egoísmo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 14: Conclusión con tres presentadores (06:20–06:45) -->
+        <div class="slide dark-blue-paper" id="slide-14">
+             <div class="w-full flex flex-col items-center justify-center p-8" style="max-height: calc(100vh - 160px);">
+                <!-- Espacios para cámaras de los tres presentadores -->
+                <div class="grid grid-cols-3 gap-4 w-full mb-8">
+                    <div class="camera-box" style="min-height: 200px;">
+                        <div class="camera-placeholder">
+                            Karolina<br>
+                            <small>"...cambio completo de misión"</small>
+                        </div>
+                    </div>
+                    <div class="camera-box" style="min-height: 200px;">
+                        <div class="camera-placeholder">
+                            Diana<br>
+                            <small>"...de Oponente de la Navidad..."</small>
+                        </div>
+                    </div>
+                    <div class="camera-box" style="min-height: 200px;">
+                        <div class="camera-placeholder">
+                            Luis<br>
+                            <small>"...a Sujeto y Ayudante"</small>
+                        </div>
+                    </div>
+                </div>
+                <p class="w-full max-w-4xl text-3xl leading-relaxed font-serif-display text-gray-300 fade-in-up text-center">
+                    "El modelo de Greimas nos muestra que la transformación de un personaje es, realmente, la transformación de su
+                    <span class="golden-text soft-glow">deseo</span> y su
+                    <span class="golden-text soft-glow">propósito</span>
+                    en la estructura de la historia."
+                </p>
+             </div>
+        </div>
+
+        <!-- Diapositiva 15: Créditos finales (06:45–07:00) -->
+        <div class="slide victorian-paper" id="slide-15" data-sfx="final-bell">
+             <div class="snow"></div>
+             <div class="fade-in-up">
+                <h2 class="text-4xl font-serif-display golden-text">Créditos</h2>
+                <p class="text-2xl mt-8">Karolina · Diana · Luis</p>
+                <p class="mt-2 text-gray-400">Programa de Literatura - Segundo Semestre</p>
+                <div class="w-1/3 h-px bg-gray-600 my-8 mx-auto"></div>
+                <h3 class="text-xl font-bold text-gray-300">Referencias</h3>
+                <p class="text-sm mt-4 text-gray-400 max-w-lg mx-auto leading-relaxed">
+                    Dickens, C. (1843). <em>A Christmas Carol</em>. <br>
+                    Greimas, A. J. Modelo Actancial<br>
+                    Fuentes académicas sobre semiótica narrativa.
+                </p>
+                <p class="mt-8 text-xs text-gray-500">
+                    Duración: 6:30 - 7:00 minutos
+                </p>
+             </div>
+        </div>
+        
+    </div>
+
+    <!-- Controles y contador de diapositivas -->
+    <div class="nav-controls">
+        <button id="prevBtn">← Anterior</button>
+        <button id="nextBtn">Siguiente →</button>
+    </div>
+    <div id="slide-counter" class="slide-counter">1 / 15</div>
+
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#daa520" />
+            </marker>
+        </defs>
+    </svg>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slide-counter');
+            let currentSlide = 0;
+
+            // Inicialización de la nieve en diapositivas con ella
+            document.querySelectorAll('.snow').forEach(container => {
+                for (let i = 0; i < 50; i++) {
+                    const flake = document.createElement('div');
+                    flake.className = 'flake';
+                    const size = Math.random() * 4 + 1;
+                    flake.style.width = `${size}px`;
+                    flake.style.height = `${size}px`;
+                    flake.style.left = `${Math.random() * 100}%`;
+                    flake.style.animation = `fall ${Math.random() * 10 + 10}s linear infinite`;
+                    flake.style.animationDelay = `${Math.random() * 5}s`;
+                    container.appendChild(flake);
+                }
+            });
+            
+            // Sintetizadores de audio con Tone.js
+            const sounds = {
+                'page-flip': new Tone.NoiseSynth({ noise: { type: 'white' }, envelope: { attack: 0.005, decay: 0.1, sustain: 0 } }).toDestination(),
+                'ding': new Tone.Synth({ oscillator: { type: 'sine' }, envelope: { attack: 0.005, decay: 0.2, sustain: 0.1, release: 0.5 } }).toDestination(),
+                'pen-stroke': new Tone.NoiseSynth({ noise: { type: 'pink' }, envelope: { attack: 0.01, decay: 0.2, sustain: 0 } }).toDestination(),
+                'whoosh': new Tone.NoiseSynth({ noise: { type: 'white' }, filter: { type: 'lowpass', frequency: 5000 }, envelope: { attack: 0.01, decay: 0.3, sustain: 0 } }).toDestination(),
+                'tick': new Tone.MembraneSynth({ pitchDecay: 0.01, octaves: 2, envelope: { attack: 0.001, decay: 0.2, sustain: 0 } }).toDestination(),
+                'bell-toll': new Tone.MetalSynth({ frequency: 120, envelope: { attack: 0.01, decay: 1.5, release: 0.5 }, harmonicity: 5.1, modulationIndex: 32, resonance: 4000, octaves: 1.5 }).toDestination(),
+                'shimmer': new Tone.Synth({ oscillator: { type: 'fmtriangle', harmonicity: 0.5 }, envelope: { attack: 0.2, decay: 0.5, sustain: 0.3, release: 1 } }).toDestination(),
+                'final-bell': new Tone.Synth({ oscillator: { type: 'triangle' }, envelope: { attack: 0.01, decay: 1, sustain: 0.2, release: 1 } }).toDestination(),
+            };
+
+            function playSound(sfx) {
+                if (!sfx || !sounds[sfx]) return;
+                 if (Tone.context.state !== 'running') {
+                    Tone.start();
+                }
+                switch (sfx) {
+                    case 'page-flip': sounds[sfx].triggerAttack(); break;
+                    case 'ding': sounds[sfx].triggerAttackRelease("C6", "8n"); break;
+                    case 'pen-stroke': sounds[sfx].triggerAttack(); break;
+                    case 'whoosh': sounds[sfx].triggerAttack(); break;
+                    case 'tick': sounds[sfx].triggerAttackRelease("C4", "16n"); break;
+                    case 'tick-tick':
+                        sounds['tick'].triggerAttackRelease("C5", "16n", Tone.now());
+                        sounds['tick'].triggerAttackRelease("G5", "16n", Tone.now() + 0.2);
+                        break;
+                    case 'whoosh-double':
+                        sounds['whoosh'].triggerAttack(Tone.now());
+                        sounds['whoosh'].triggerAttack(Tone.now() + 0.1);
+                        break;
+                    case 'bell-toll': sounds[sfx].triggerAttackRelease("C3", "2n"); break;
+                    case 'shimmer': sounds[sfx].triggerAttackRelease("C5", "1n"); break;
+                    case 'final-bell': sounds[sfx].triggerAttackRelease("G5", "1n"); break;
+                }
+            }
+
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+                slideCounter.textContent = `${index + 1} / ${slides.length}`;
+                
+                // Disparar SFX al cambiar de diapositiva
+                const activeSlide = slides[index];
+                const sfx = activeSlide.dataset.sfx;
+                if(sfx) {
+                   playSound(sfx);
+                }
+            }
+
+            function nextSlide() {
+                let next = currentSlide + 1;
+                if (next >= slides.length) {
+                    next = 0; // Vuelve al inicio
+                }
+                showSlide(next);
+            }
+
+            function prevSlide() {
+                let prev = currentSlide - 1;
+                if (prev < 0) {
+                    prev = slides.length - 1; // Va al final
+                }
+                showSlide(prev);
+            }
+
+            // Event Listeners
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            });
+
+            // Iniciar en la primera diapositiva
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
